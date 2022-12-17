@@ -15,13 +15,13 @@ jobs:
             image: flask_mdb_api
             context: ./API/
           - dockerfile: Dockerfile
-            image: ./backend/flask_mdb_backend
+            image: flask_mdb_backend
             context: ./backend/
           - dockerfile: Dockerfile
-            image: ./cronjob/flask_mdb_cronjob
+            image: flask_mdb_cronjob
             context: ./cronjob/
           - dockerfile: Dockerfile
-            image: ./frontend/flask_mdb_frontend
+            image: flask_mdb_frontend
             context: ./frontend/
     steps:
       -
