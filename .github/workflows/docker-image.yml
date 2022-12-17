@@ -11,14 +11,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./API/Dockerfile
+          - dockerfile: Dockerfile
             image: flask_mdb_api
-          - dockerfile: ./backend/Dockerfile
-            image: flask_mdb_backend 
-          - dockerfile: ./cronjob/Dockerfile
-            image: flask_mdb_cronjob 
-          - dockerfile: ./frontend/Dockerfile
+            context: ./API/
+          - dockerfile: Dockerfile
+            image: flask_mdb_backend
+            context: ./backend/
+          - dockerfile: Dockerfile
+            image: flask_mdb_cronjob
+            context: ./cronjob/
+          - dockerfile: Dockerfile
             image: flask_mdb_frontend
+            context: ./frontend/
     steps:
       -
         name: Checkout
@@ -39,7 +43,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: lucasalmonacid/${{ matrix.image }}:latest
