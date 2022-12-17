@@ -1,0 +1,8 @@
+cryptography
+requests
+pymongo
+grpcio
+BeautifulSoup4 
+grpcio-tools==1.46.5
+
+

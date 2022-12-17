@@ -1,0 +1,6 @@
+cryptography
+requests
+Flask==2.1.0
+BeautifulSoup4 
+grpcio
+grpcio-tools==1.46.5

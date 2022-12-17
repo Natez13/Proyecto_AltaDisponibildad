@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+service Data {
+    rpc GetWeatherData(GetWeatherDataRequest) returns (ReturnMessage);
+    rpc GetCoinsData(GetCoinsDataRequest) returns (ReturnMessage);
+}
+
+message ReturnMessage{
+    string msn = 1;
+}
+
+message GetWeatherDataRequest {
+    string temp = 1;
+    string time = 2;
+}
+
+message GetCoinsDataRequest {
+    string dolar = 1;
+    string euro = 2;
+    string uf = 3;
+    string time = 4;
+}
