@@ -11,17 +11,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: Dockerfile
+          - dockerfile: ./API/Dockerfile
             image: flask_mdb_api
             context: ./API/
           - dockerfile: Dockerfile
-            image: flask_mdb_backend
+            image: ./backend/flask_mdb_backend
             context: ./backend/
           - dockerfile: Dockerfile
-            image: flask_mdb_cronjob
+            image: ./cronjob/flask_mdb_cronjob
             context: ./cronjob/
           - dockerfile: Dockerfile
-            image: flask_mdb_frontend
+            image: ./frontend/flask_mdb_frontend
             context: ./frontend/
     steps:
       -
@@ -46,4 +46,4 @@ jobs:
           context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: lucasalmonacid/${{ matrix.image }}:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
