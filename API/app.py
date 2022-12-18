@@ -22,7 +22,7 @@ def set_FirstData():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"clima"+city
+    url = "https://www.google.cl/search?q="+"clima "+city
     html = requests.get(url).content
     
     # getting raw data
