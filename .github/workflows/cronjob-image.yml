@@ -1,4 +1,4 @@
-name: API Build & publish images
+name: cronjob Build & publish images
 on:
   push:
     branches:
