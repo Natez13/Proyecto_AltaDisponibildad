@@ -49,20 +49,15 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
 
   deploy:
-    name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: deploy to cluster
-      uses: ghostzero/kubectl@v1
+    - name: kubectl - Google Cloud GKE cluster.
+      uses: ameydev/gke-kubectl-action@master
       env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }}
+        ZONE_NAME: us-central1-c
       with:
-        args: set image --record backend container=flask_mdb_backend:latest
-    - name: verify deployment
-      uses: ghostzero/kubectl@v1
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        KUBECTL_VERSION: "v1.24.2"
-      with:
-        args: '"rollout status deployment/my-app"'
+        args: apply -f kubernetes -n staging
