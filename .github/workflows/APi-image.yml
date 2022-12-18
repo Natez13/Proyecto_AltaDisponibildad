@@ -1,28 +1,12 @@
 name: Build & publish images
 on:
   push:
-    branches:
-      - 'main'
+    paths:
+      - './API'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - dockerfile: ./API/Dockerfile
-            image: flask_mdb_api
-            context: ./API/
-          - dockerfile: ./backend/Dockerfile
-            image: flask_mdb_backend
-            context: ./backend/
-          - dockerfile: ./cronjob/Dockerfile
-            image: flask_mdb_cronjob
-            context: ./cronjob/
-          - dockerfile: ./frontend/Dockerfile
-            image: flask_mdb_frontend
-            context: ./frontend/
     steps:
       -
         name: Checkout
@@ -43,10 +27,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ${{ matrix.context }}
-          file: ${{ matrix.dockerfile }}
+          context: ./API/
+          file: ./API/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_api:latest
 
     
   deploy:
@@ -67,4 +51,4 @@ jobs:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
     - id: 'update-services'
-      run: 'kubectl apply -f ./kubernetes -n staging'
+      run: 'ls'
