@@ -19,7 +19,7 @@ def main():
         city = "Santiago Chile"
 
         # creating url and requests instance
-        url = "https://www.google.com/search?q="+"weather"+city
+        url = "https://www.google.cl/search?q="+"clima"+city
         html = requests.get(url).content
 
         # getting raw data

@@ -12,9 +12,9 @@ def main():
         # enter city name
         
         # creating url and requests instance
-        url = "https://www.google.com/search?q="+"dolar clp"
-        url2 = "https://www.google.com/search?q="+"euro clp"
-        url3 = "https://www.google.com/search?q="+"uf clp"
+        url = "https://www.google.cl/search?q="+"dolar clp"
+        url2 = "https://www.google.cl/search?q="+"euro clp"
+        url3 = "https://www.google.cl/search?q="+"uf clp"
         #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
         
         html = requests.get(url).content
