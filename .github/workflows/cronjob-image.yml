@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-    - 'API/*'
+    - 'cronjob/*'
 
 jobs:
   docker:
@@ -29,10 +29,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./API/
-          file: ./API/Dockerfile
+          context: ./cronjob/
+          file: ./cronjob/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_cronjob:latest
 
     
   deploy:
@@ -53,5 +53,5 @@ jobs:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
     - id: 'update-services'
-      run: 'kubectl rollout restart deployment api'
+      run: 'kubectl rollout restart deployment cronjob'
         
