@@ -50,14 +50,23 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
-    - uses: actions/checkout@master
-    - name: kubectl - Google Cloud GKE cluster.
-      uses: ameydev/gke-kubectl-action@master
-      env:
-        PROJECT_ID: ${{ secrets.PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }}
-        ZONE_NAME: us-central1
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
       with:
-        args: apply -f kubernetes -n staging
+        credentials_json: '${{ secrets.GKE_CLUSTER_NAME }}'
+
+    - id: 'get-credentials'
+      uses: 'google-github-actions/get-gke-credentials@v1'
+      with:
+        cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
+        location: 'us-central1-a'
+    - id: 'get-pods'
+      run: 'kubectl get pods'
+
+
+    # The KUBECONFIG env var is automatically exported and picked up by kubectl.
+
