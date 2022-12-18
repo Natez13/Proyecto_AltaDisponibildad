@@ -52,5 +52,6 @@ jobs:
       with:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
-        args: set image deployments/api api=${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_api:latest
+    - id: 'update-services'
+      run: 'kubectl rollout restart deployment frontend'
         
