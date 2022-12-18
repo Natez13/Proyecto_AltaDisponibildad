@@ -22,7 +22,7 @@ def set_FirstData():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"clima "+city
+    url = "https://www.google.cl/search?q="+"clima "+city+"celsius"
     html = requests.get(url).content
     
     # getting raw data
@@ -32,9 +32,9 @@ def set_FirstData():
     epoch_time = str(int(time.time()))
 
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"dolar clp"
-    url2 = "https://www.google.cl/search?q="+"euro clp"
-    url3 = "https://www.google.cl/search?q="+"uf a clp"
+    url = "https://www.google.cl/search?q="+"dolar clp&gl=cl&hl=es"
+    url2 = "https://www.google.cl/search?q="+"euro clp&gl=cl&hl=es"
+    url3 = "https://www.google.cl/search?q="+"uf a clp&gl=cl&hl=es"
     #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
     
     html = requests.get(url).content
