@@ -54,14 +54,15 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: deploy to cluster
-      uses: steebchen/kubectl@v2.0.0
-      with: # defaults to latest kubectl binary version
-        config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: set image --record api container=flask_mdb_api:latest
-    - name: verify deployment
-      uses: steebchen/kubectl@v2.0.0
+      uses: ghostzero/kubectl@v1
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        config: ${{ secrets.KUBE_CONFIG_DATA }}
-        version: v1.24.2 # specify kubectl binary version explicitly
-        binaries-url: "https://dl.k8s.io/release/v1.24.2/bin/linux/amd64/kubectl" # specify the download url explicitly
-        command: rollout status deployment/my-app
+        args: set image --record backend container=flask_mdb_backend:latest
+    - name: verify deployment
+      uses: ghostzero/kubectl@v1
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        KUBECTL_VERSION: "v1.24.2"
+      with:
+        args: '"rollout status deployment/my-app"'
