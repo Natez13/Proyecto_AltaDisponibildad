@@ -67,4 +67,4 @@ jobs:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
     - id: 'get-pods'
-      run: 'kubectl -f apply kubernetes'
+      run: 'kubectl apply -f kubernetes'
