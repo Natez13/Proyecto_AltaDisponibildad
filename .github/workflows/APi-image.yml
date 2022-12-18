@@ -1,4 +1,4 @@
-name: Build & publish images
+name: API Build & publish images
 on:
   push:
     paths:
