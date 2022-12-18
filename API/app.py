@@ -22,7 +22,7 @@ def set_FirstData():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.com/search?q="+"clima "+city+"celsius"
+    url = "https://www.google.cl/search?q="+"clima "+city+"celsius"
     html = requests.get(url).content
     
     # getting raw data
@@ -30,6 +30,7 @@ def set_FirstData():
     temp = soup.find('span', attrs={'class': 'wob_t q8U8x'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
+    
 
     # creating url and requests instance
     url = "https://www.google.cl/search?q="+"dolar clp"

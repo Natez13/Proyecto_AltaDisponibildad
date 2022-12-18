@@ -67,4 +67,4 @@ jobs:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
     - id: 'update-services'
-      run: 'kubectl apply -f packaging/k8s/manifests/kubernetes -n staging'
+      run: 'kubectl apply -f packaging/k8s/manifests/ -n staging'
