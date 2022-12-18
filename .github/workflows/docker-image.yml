@@ -48,7 +48,9 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
 
+    
   deploy:
+    needs: docker
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
@@ -65,8 +67,4 @@ jobs:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
     - id: 'get-pods'
-      run: 'kubectl get pods'
-
-
-    # The KUBECONFIG env var is automatically exported and picked up by kubectl.
-
+      run: 'kubectl -f apply kubernetes'

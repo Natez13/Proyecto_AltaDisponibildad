@@ -34,24 +34,21 @@ def set_FirstData():
     # creating url and requests instance
     url = "https://www.google.com/search?q="+"dolar clp"
     url2 = "https://www.google.com/search?q="+"euro clp"
-    url3 = "https://www.google.com/search?q="+"uf clp"
+    url3 = "https://www.google.com/search?q="+"uf a clp"
     #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
     
     html = requests.get(url).content
     soup = BeautifulSoup(html, 'html.parser')
     dolar_arr = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
-    aux = dolar_arr.split(' ')
-    dolar = aux[0]
+    dolar = re.findall(number_extract_pattern, dolar_arr)[0]
     html = requests.get(url2).content
     soup = BeautifulSoup(html, 'html.parser')
     euro_arr = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
-    aux = euro_arr.split(' ')
-    euro = aux[0]
+    euro = re.findall(number_extract_pattern, euro_arr)[0]
     html = requests.get(url3).content
     soup = BeautifulSoup(html, 'html.parser')
     uf_arr = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
-    aux = uf_arr.split(' ')
-    uf = aux[0]
+    uf = re.findall(number_extract_pattern, uf_arr)[0]
     epoch_time = str(int(time.time()))
 
     db = get_db()
