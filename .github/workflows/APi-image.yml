@@ -2,7 +2,7 @@ name: Build & publish images
 on:
   push:
     paths:
-      - './API/'
+    - 'API/'
 
 jobs:
   docker:
