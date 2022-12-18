@@ -52,5 +52,4 @@ jobs:
       with:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
-    - id: 'update-services'
-      run: 'ls'
+        args: set image deployments/frontend frontend=${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_frontend:latest
