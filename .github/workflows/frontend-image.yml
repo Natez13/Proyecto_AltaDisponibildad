@@ -1,4 +1,4 @@
-name: API Build & publish images
+name: frontend Build & publish images
 on:
   push:
     branches:
