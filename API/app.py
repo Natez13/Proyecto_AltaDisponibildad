@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app)
 def set_FirstData():
     # enter city name
-    city = "Santiago Chile"
+    city = "Santiago de Chile"
     
     # creating url and requests instance
     url = "https://www.google.cl/search?q="+"clima "+city
