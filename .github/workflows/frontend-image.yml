@@ -32,7 +32,7 @@ jobs:
           context: ./frontend/
           file: ./frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_frontend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_frontend:${{ github.sha }}
 
     
   deploy:
@@ -52,4 +52,4 @@ jobs:
       with:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
-        args: set image deployments/frontend frontend=${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_frontend:latest
+        args: set image deployments/frontend frontend=${{ secrets.DOCKERHUB_USERNAME }}/flask_mdb_frontend:${{ github.sha }}
