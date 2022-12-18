@@ -25,7 +25,7 @@ class Data(cron_pb2_grpc.DataServicer):
     def GetCoinsData(self, request, context):
         db = get_db()
         db.divisa.insert_one({'dolar':request.dolar,'UF':request.uf,'euro':request.euro,'time':request.time})
-        response = cron_pb2.ReturnMessage(msn="WEATHER Insert dolar: "+request.dolar+" UF: "+request.uf+" euro: "+request.euro+" time: "+request.time)
+        response = cron_pb2.ReturnMessage(msn="COIN Insert dolar: "+request.dolar+" UF: "+request.uf+" euro: "+request.euro+" time: "+request.time)
         return response
 
 
