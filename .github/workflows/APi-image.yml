@@ -52,20 +52,5 @@ jobs:
       with:
         cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
         location: 'us-central1'
-    - id: 'update-services'
-      run: 'ls'
-
-  deploy_test:
-    needs: docker
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: kubectl - Google Cloud GKE cluster.
-      uses: ameydev/gke-kubectl-action@master
-      env:
-        PROJECT_ID: ${{ secrets.PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-        CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }}
-        ZONE_NAME: us-central1
-      with:
         args: apply -f kuberetes
+        
