@@ -76,12 +76,12 @@ def weather():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.com/search?q="+"weather"+city
+    url = "https://www.google.com/search?q="+"clima "+city+"celsius"
     html = requests.get(url).content
     
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
-    temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
+    temp = soup.find('span', attrs={'class': 'wob_t q8U8x'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
     
