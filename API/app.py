@@ -22,20 +22,19 @@ def set_FirstData():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"clima "+city+"celsius"
+    url = "https://www.google.com/search?q="+"weather"+city
     html = requests.get(url).content
     
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
-    temp = soup.find('span', attrs={'class': 'wob_t q8U8x'}).text
+    temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
-    
 
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"dolar clp"
-    url2 = "https://www.google.cl/search?q="+"euro clp"
-    url3 = "https://www.google.cl/search?q="+"uf a clp"
+    url = "https://www.google.com/search?q="+"dolar clp"
+    url2 = "https://www.google.com/search?q="+"euro clp"
+    url3 = "https://www.google.com/search?q="+"uf a clp"
     #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
     
     html = requests.get(url).content
@@ -77,12 +76,12 @@ def weather():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.com/search?q="+"clima "+city+"celsius"
+    url = "https://www.google.cl/search?q="+"clima"+city
     html = requests.get(url).content
     
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
-    temp = soup.find('span', attrs={'class': 'wob_t q8U8x'}).text
+    temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
     
@@ -97,9 +96,9 @@ def divisas():
     # enter city name
     
     # creating url and requests instance
-    url = "https://www.google.com/search?q="+"dolar clp"
-    url2 = "https://www.google.com/search?q="+"euro clp"
-    url3 = "https://www.google.com/search?q="+"uf clp"
+    url = "https://www.google.cl/search?q="+"dolar clp"
+    url2 = "https://www.google.cl/search?q="+"euro clp"
+    url3 = "https://www.google.cl/search?q="+"uf clp"
     #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
     
     html = requests.get(url).content
