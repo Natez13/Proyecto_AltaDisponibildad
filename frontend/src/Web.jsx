@@ -93,7 +93,7 @@ return (
         <div className="container">
           <div className="dashboard">
             <div className="dashboard-header">
-              <div className="dashboard-header__title">Chile Today 5</div>
+              <div className="dashboard-header__title">Chile Today 6</div>
               <div className="dashboard-header__date">{time?time:'0'}</div>
             </div>
             <div className="dashboard-card divisa">
