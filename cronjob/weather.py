@@ -24,7 +24,7 @@ def main():
 
         # getting raw data
         soup = BeautifulSoup(html, 'html.parser')
-        temparature = soup.find('div', attrs={'span': 'dato-temperatura changeUnitT'}).text
+        temparature = soup.find('span', attrs={'class': 'dato-temperatura changeUnitT'}).text
         temparature = re.findall(number_extract_pattern, temparature)[0]
         epoch_time = str(int(time.time()))
         print('SEND: ',temparature,' AND ',epoch_time)
