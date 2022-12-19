@@ -27,6 +27,7 @@ def main():
         temparature = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
         temparature = re.findall(number_extract_pattern, temparature)[0]
         epoch_time = str(int(time.time()))
+        print('SEND: ',temparature,' AND ',epoch_time)
         request = cron_pb2.GetWeatherDataRequest(temp=temparature,time=epoch_time)
         result = stub.GetWeatherData(request)
         print(result.msn)
