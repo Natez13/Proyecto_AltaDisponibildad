@@ -20,12 +20,16 @@ class Data(cron_pb2_grpc.DataServicer):
     def GetWeatherData(self, request, context):
         db = get_db()
         db.clima.insert_one({'temp':request.temp, 'time':request.time})
-        response = cron_pb2.ReturnMessage(msn="WEATHER Insert Temp: "+request.temp+" Time: "+request.time)
+        msn_send ="WEATHER Insert Temp: "+request.temp+" Time: "+request.time
+        print(msn_send)
+        response = cron_pb2.ReturnMessage(msn=msn_send)
         return response
     def GetCoinsData(self, request, context):
         db = get_db()
         db.divisa.insert_one({'dolar':request.dolar,'UF':request.uf,'euro':request.euro,'time':request.time})
-        response = cron_pb2.ReturnMessage(msn="COIN Insert dolar: "+request.dolar+" UF: "+request.uf+" euro: "+request.euro+" time: "+request.time)
+        msn_send ="COIN Insert dolar: "+request.dolar+" UF: "+request.uf+" euro: "+request.euro+" time: "+request.time
+        print(msn_send)
+        response = cron_pb2.ReturnMessage(msn=msn_send)
         return response
 
 
