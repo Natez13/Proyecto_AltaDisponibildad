@@ -1,2 +1,2 @@
-* * * * *  python3 /cronjob/weather.py >>/cronjob/out.log 2>/cronjob/err.log;
-* * * * * python3 /cronjob/coins.py >>/cronjob/out2.log 2>/cronjob/err2.log
+*/5 * * * * python3 /cronjob/weather.py >>/cronjob/out.log 2>/cronjob/err.log;
+*/20 * * * * python3 /cronjob/coins.py >>/cronjob/out2.log 2>/cronjob/err2.log
