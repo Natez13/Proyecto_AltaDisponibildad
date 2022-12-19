@@ -27,7 +27,7 @@ def set_FirstData():
     
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
-    temp = soup.find('div', attrs={'class': 'dato-temperatura changeUnitT'}).text
+    temp = soup.find('div', attrs={'span': 'dato-temperatura changeUnitT'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
 
