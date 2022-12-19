@@ -19,12 +19,12 @@ def main():
         city = "Santiago Chile"
 
         # creating url and requests instance
-        url = "https://www.google.cl/search?q="+"clima"+city+"celsius"
+        url = "https://www.meteored.cl/tiempo-en_Santiago+de+Chile-America+Sur-Chile-Region+Metropolitana+de+Santiago-SCEL-1-18578.html"
         html = requests.get(url).content
 
         # getting raw data
         soup = BeautifulSoup(html, 'html.parser')
-        temparature = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
+        temparature = soup.find('div', attrs={'class': 'dato-temperatura changeUnitT'}).text
         temparature = re.findall(number_extract_pattern, temparature)[0]
         epoch_time = str(int(time.time()))
         print('SEND: ',temparature,' AND ',epoch_time)

@@ -22,19 +22,19 @@ def set_FirstData():
     city = "Santiago Chile"
     
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"clima "+city+"celsius"
+    url = "https://www.meteored.cl/tiempo-en_Santiago+de+Chile-America+Sur-Chile-Region+Metropolitana+de+Santiago-SCEL-1-18578.html"
     html = requests.get(url).content
     
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
-    temp = soup.find('div', attrs={'xpath': '//*[@id="wob_tm"]'}).text
+    temp = soup.find('div', attrs={'class': 'dato-temperatura changeUnitT'}).text
     temp = re.findall(number_extract_pattern, temp)[0]
     epoch_time = str(int(time.time()))
 
     # creating url and requests instance
-    url = "https://www.google.cl/search?q="+"dolar clp &gl=cl&hl=es"
-    url2 = "https://www.google.cl/search?q="+"euro clp &gl=cl&hl=es"
-    url3 = "https://www.google.cl/search?q="+"uf a clp &gl=cl&hl=es"
+    url = "https://www.google.cl/search?q="+"dolar clp&gl=cl&hl=es"
+    url2 = "https://www.google.cl/search?q="+"euro clp&gl=cl&hl=es"
+    url3 = "https://www.google.cl/search?q="+"uf a clp&gl=cl&hl=es"
     #url20 = "https://si3.bcentral.cl/indicadoressiete/secure/indicadoresdiarios.aspx"
     
     html = requests.get(url).content
