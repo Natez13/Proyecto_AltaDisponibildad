@@ -10,7 +10,7 @@ Body
 body {
   height: 100vh;
   margin: 0;
-  background: radial-gradient(ellipse farthest-corner at center bottom, #6beace, #2e9aa4);
+  background: radial-gradient(ellipse farthest-corner at center bottom, #6beace, #2e9aa4)  no-repeat center fixed;
   color: #8b9095;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
