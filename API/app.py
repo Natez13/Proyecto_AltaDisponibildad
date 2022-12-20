@@ -69,6 +69,25 @@ def get_db():
 def ping_server():
     return "Welcome to Chile Today API REST server"
 
+
+
+
+@app.route('/get_data')
+def get_stored_data():
+    db = get_db()
+    _clima = db.clima.find().sort([('time', -1)]).limit(1)
+    climas = [{ "time": clima["time"], "clima": clima["temp"]} for clima in _clima]
+    _divisa = db.divisa.find().sort([('time', -1)]).limit(1)
+    divisas = [{ "dolar": divisa["dolar"], "UF": divisa["UF"], "Euro": divisa["euro"],"time": divisa["time"]} for divisa in _divisa]
+    return jsonify({"climas": climas,"divisas": divisas})
+
+'''
+@app.route('/get_divisa')
+def get_stored_divisa():
+    db = get_db()
+    _divisa = db.divisa.find().sort([('time', -1)]).limit(1)
+    divisas = [{ "dolar": divisa["dolar"], "UF": divisa["UF"], "Euro": divisa["euro"]} for divisa in _divisa]
+    return jsonify({"divisas": divisas})
 @app.route('/weather')
 def weather():
    
@@ -130,25 +149,6 @@ def divisas():
     
     response = jsonify({'dolar':dolar,'uf':uf,'euro':euro,'time':epoch_time})
     return response
-
-
-@app.route('/get_data')
-def get_stored_data():
-    db = get_db()
-    _clima = db.clima.find().sort([('time', -1)]).limit(1)
-    climas = [{ "time": clima["time"], "clima": clima["temp"]} for clima in _clima]
-    _divisa = db.divisa.find().sort([('time', -1)]).limit(1)
-    divisas = [{ "dolar": divisa["dolar"], "UF": divisa["UF"], "Euro": divisa["euro"],"time": divisa["time"]} for divisa in _divisa]
-    return jsonify({"climas": climas,"divisas": divisas})
-
-'''
-@app.route('/get_divisa')
-def get_stored_divisa():
-    db = get_db()
-    _divisa = db.divisa.find().sort([('time', -1)]).limit(1)
-    divisas = [{ "dolar": divisa["dolar"], "UF": divisa["UF"], "Euro": divisa["euro"]} for divisa in _divisa]
-    return jsonify({"divisas": divisas})
-
 '''
 
 if __name__=='__main__':

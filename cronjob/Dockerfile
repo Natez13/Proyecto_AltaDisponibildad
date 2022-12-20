@@ -9,4 +9,4 @@ RUN crontab mycron
 #RUN python3 -m grpc_tools.protoc -I protos --python_out=/backend --grpc_python_out=. protos/cron.proto
 #RUN python3 -m grpc_tools.protoc -I protos --python_out=/backend --grpc_python_out=/backend protos/cron.proto
 #CMD ["python3","-u","app.py"]
-CMD crond && tail -f /cronjob/out.log
+CMD crond && tail -f /cronjob/out.log -f /cronjob/out2.log
