@@ -6,7 +6,7 @@ import cron_pb2_grpc
 import pymongo
 from pymongo import MongoClient
 import requests
-import app as API
+
 def get_db():
     client = MongoClient(host='db',
                          port=27017, 
@@ -46,6 +46,3 @@ def main():
 
 if __name__=='__main__':
     main()
-    API.set_FirstData()
-    API.app.run(debug=True,host="0.0.0.0", port=5000)
-    
