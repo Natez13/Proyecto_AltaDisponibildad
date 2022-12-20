@@ -4,5 +4,5 @@ pymongo
 grpcio
 BeautifulSoup4 
 grpcio-tools==1.46.5
-
+Flask==2.1.0
 
