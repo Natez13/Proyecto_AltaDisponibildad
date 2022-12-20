@@ -28,7 +28,7 @@ function getTime()
 function Web (){
 
   useLayoutEffect(() => {
-    axios("/backend/get_data")
+    axios("/api/get_data")
     .then((response) => {
       console.log('Data:',response.data)
       setData(response.data)
@@ -67,7 +67,7 @@ function Web (){
   useEffect(() => {
     const interval_data = setInterval(() => 
   
-    axios("/backend/get_data")
+    axios("/api/get_data")
     .then((response) => {
       console.log('Data:',response.data)
       setData(response.data)
